@@ -1,6 +1,8 @@
-import { jsx as _jsx } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { createRoot } from 'react-dom/client';
+import { Route, Switch } from 'wouter';
 import App from './App';
+import NotFound from './pages/not-found';
 import { ErrorBoundary } from '@/components/error-boundary';
 import './index.css';
 createRoot(document.getElementById('root'), {
@@ -8,4 +10,4 @@ createRoot(document.getElementById('root'), {
     onCaughtError: (error, errorInfo) => {
         console.error(error, errorInfo.componentStack);
     },
-}).render(_jsx(ErrorBoundary, { children: _jsx(App, {}) }));
+}).render(_jsx(ErrorBoundary, { children: _jsxs(Switch, { children: [_jsx(Route, { path: '/', component: App }), _jsx(Route, { children: _jsx(NotFound, {}) })] }) }));
