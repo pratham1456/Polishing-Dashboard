@@ -1,0 +1,129 @@
+Build a production-ready real-time industrial dashboard UI for a **Part Polishing / Buffing workstation**.
+
+Tech stack:
+- React.js (JSX)
+- Vite
+- Tailwind CSS
+- Recharts
+- Lucide React
+- FastAPI backend integration through REST APIs + WebSocket
+
+The UI should be a modern, clean industrial monitoring dashboard inspired by the provided reference image.
+
+### Information that MUST be displayed
+
+#### Production KPIs
+- Component Type: Output Tray
+- Total Component Count
+- Components Produced per Hour
+- Average Cycle Time
+- Total Polishing/Buffing Time
+
+#### Operator Metrics
+- Operator Presence Time
+- Operator Active Time
+- Operator Idle Time
+- Operator Utilization %
+- Operator Efficiency %
+
+#### Production Analytics
+- Cycle Time of each Component
+  - Component ID
+  - Cycle Time in seconds
+  - Average Cycle Time reference
+- Average Time by activity:
+  - Polishing/Buffing
+  - Transition
+  - Idle
+- Total Time by activity:
+  - Polishing/Buffing
+  - Transition
+  - Idle
+- Machine Utilization:
+  - Active
+  - Idle
+- Operator Efficiency:
+  - Active Time
+  - Idle Time
+
+#### Live Camera
+- Live RTSP camera stream through a browser-compatible stream URL
+- LIVE indicator
+- Camera connection status
+- FPS
+- Timestamp
+- YOLO detection visualization when available
+- Detected part bounding box
+- Detection confidence
+- Current process state
+
+Do not execute the `.pt` model in React. The FastAPI backend executes the YOLO model and sends detection/process information to the frontend.
+
+#### Current Cycle Status
+Show the current part's state:
+
+- Waiting for Part
+- Part Picked
+- Polishing
+- Placement Pending
+- Output Tray Placed
+- Cycle Completed
+
+Show the current Component ID and cycle time.
+
+#### Production Cycle
+The actual process is:
+
+Part Picked → Polishing → Part Placed in Output Tray → Placement Confirmed → Cycle Completed
+
+A completed cycle should increment the Total Component Count by 1.
+
+#### Real-Time Updates
+Use FastAPI WebSocket for real-time updates.
+
+The UI should update without page refresh or polling when:
+- A part is detected
+- Part is picked
+- Polishing starts
+- Polishing completes
+- Part is placed in Output tray
+- Cycle is completed
+- Production count changes
+- Cycle time changes
+- Operator metrics change
+- Camera status changes
+
+#### Connection Status
+Show:
+- Camera Connected / Disconnected
+- Backend Connected / Disconnected
+- YOLO Model Running / Stopped
+
+Do NOT include:
+- PLC
+- Laser marking
+- Robot
+- Conveyor
+- CNC
+
+### Visual Style
+
+Use a professional industrial/HMI style:
+- Dark theme
+- High contrast
+- Clean typography
+- Large KPI values
+- Compact cards
+- Clear status indicators
+- Professional charts
+- Minimal animations
+- Minimal shadows
+- Consistent spacing
+- Green for success/active
+- Yellow for warning/pending
+- Red for errors
+- Blue for information
+
+The dashboard must be optimized for continuous operation on an industrial monitor and must display all critical production information without requiring page navigation.
+
+Use realistic mock data initially so the UI can be demonstrated without the FastAPI backend.
